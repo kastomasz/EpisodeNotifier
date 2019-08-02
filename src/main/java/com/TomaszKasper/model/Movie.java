@@ -1,6 +1,7 @@
 package com.TomaszKasper.model;
 
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,10 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Data
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 public class Movie {
 
     @Id
