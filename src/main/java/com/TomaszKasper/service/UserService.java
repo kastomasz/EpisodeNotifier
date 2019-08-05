@@ -36,7 +36,7 @@ public class UserService {
         }
     }
 
-    public void addMovie(final String username, final String password, final Long movieId) throws Exception {
+    public void followMovie(final String username, final String password, final Long movieId) throws Exception {
         Optional<User> user = userRepository.findByUsername(username);
         Optional<Movie> movie = movieRepository.findById(movieId);
         if (!user.isPresent()) {
