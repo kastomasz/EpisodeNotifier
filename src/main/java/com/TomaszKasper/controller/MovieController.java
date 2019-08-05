@@ -37,4 +37,9 @@ public class MovieController {
     public Movie update(@RequestParam Long id, @RequestParam String newTitle, @RequestParam String newPremiereDate) throws NotFoundException {
         return movieService.update(id, newTitle, newPremiereDate);
     }
+
+    @RequestMapping("/all")
+    public List<Movie> getAll() {
+        return movieService.getAll();
+    }
 }
