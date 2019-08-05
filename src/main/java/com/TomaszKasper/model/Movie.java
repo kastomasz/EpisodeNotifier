@@ -12,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
+@Data
 public class Movie {
 
     @Id
