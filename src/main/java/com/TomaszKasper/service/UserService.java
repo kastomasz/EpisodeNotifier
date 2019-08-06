@@ -1,9 +1,11 @@
 package com.TomaszKasper.service;
 
+import com.TomaszKasper.exception.UsernameNotAviableException;
 import com.TomaszKasper.model.Movie;
 import com.TomaszKasper.model.User;
 import com.TomaszKasper.repository.MovieRepository;
 import com.TomaszKasper.repository.UserRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class UserService {
 
     public User create(final String username, final String password) throws Exception {
         if (userRepository.findByUsername(username).isPresent()) {
-            throw new Exception("Podana nazwa użytkownika jest zajęta");
+            throw new UsernameNotAviableException("Given username is already occupied");
         } else {
             return userRepository.save(new User(username, password));
         }
@@ -32,7 +34,7 @@ public class UserService {
         if (user.isPresent()) {
             return user.get().getMovies();
         } else {
-            throw new Exception("Podany użytkownik nie istnieje");
+            throw new NotFoundException("User doesn't exist");
         }
     }
 
@@ -40,10 +42,10 @@ public class UserService {
         Optional<User> user = userRepository.findByUsername(username);
         Optional<Movie> movie = movieRepository.findById(movieId);
         if (!user.isPresent()) {
-            throw new Exception("Podany użytkownik nie istnieje");
+            throw new NotFoundException("User doesn't exist");
         }
         if (!movie.isPresent()) {
-            throw new Exception("Film o podanym ID nie istnieje");
+            throw new NotFoundException("Movie doesn't exist");
         }
 
         if (!user.get().getMovies().contains(movie)) {

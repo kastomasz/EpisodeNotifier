@@ -32,7 +32,7 @@ public class MovieService {
     public Movie update(final Long id, final String newTitle, final String newPremiereDate) throws NotFoundException {
         Optional<Movie> movie = movieRepository.findById(id);
         if (!movie.isPresent()) {
-            throw new NotFoundException("Brak filmu o podanym id");
+            throw new NotFoundException("Movie with given ID not found");
         } else {
             movieRepository.deleteById(id);
             movie.get().setTitle(newTitle);
