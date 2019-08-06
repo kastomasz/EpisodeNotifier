@@ -29,3 +29,6 @@
 # Maven
 log/
 target/
+
+# Secret file
+src/main/resources/tmdbApi.properties
